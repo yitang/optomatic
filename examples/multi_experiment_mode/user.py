@@ -33,7 +33,7 @@ param_types = {}
 param_space['svc'] = {'C': expon(scale=100), 'gamma': expon(scale=0.1), 'probability': [True], 'kernel': ['linear']}
 param_types['svc'] = {'C': 'real', 'gamma': 'real', 'probability': 'int', 'kernel': 'categorical'}
 
-param_space['rfc'] = {'n_estimators': [100, 200, 300, 400, 500, 600], 'max_features': [1, 2]}
+param_space['rfc'] = {'n_estimators': randint(50, 600), 'max_features': [1, 2]}
 param_types['rfc'] = {'n_estimators': 'int', 'max_features': 'int'}
 
 '''
@@ -48,15 +48,15 @@ clf_params - dictionary of the current parameters.
 X - features
 y - labels
 '''
-def objective(clf, clf_params, X, y):
-    clf.set_params( **clf_params )
-    scores = cross_val_score( clf,
-                              X,
-                              y,
-                              scoring='log_loss',
-                              cv=4,
-                              n_jobs=-1  )
+# def objective(clf, clf_params, X, y):
+#     clf.set_params( **clf_params )
+#     scores = cross_val_score( clf,
+#                               X,
+#                               y,
+#                               scoring='log_loss',
+#                               cv=4,
+#                               n_jobs=-1  )
 
-    # scores will be -ve from log_loss, make +ive...
-    scores = -1 * np.array(scores)
-    return list(scores)
+#     # scores will be -ve from log_loss, make +ive...
+#     scores = -1 * np.array(scores)
+    # return list(scores)
