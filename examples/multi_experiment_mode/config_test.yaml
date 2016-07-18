@@ -1,0 +1,9 @@
+MongDB:
+  host: localhost
+  port: 27017
+experiment_name:
+  rfc: max_features-n_estimators
+  svc: C-gamma-kernel-probability
+features: '111'
+max_evals: 5
+project_name: example_multi_experiments
