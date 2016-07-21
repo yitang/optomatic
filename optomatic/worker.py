@@ -62,12 +62,12 @@ class Worker:
     def compute(self, **kwargs):
         job = self.get_next_params()
         clf_params = job['params']
-        scores = self.objective(clf_params=clf_params, **kwargs)
+        scores, aux_data = self.objective(clf_params=clf_params, **kwargs)
         logger.debug("scores from objective: {}".format(scores))
 
         loss = np.mean(scores)
-        std = np.std(scores)
+        # std = np.std(scores)
 
         # then report these results back in the db...
-        aux_data = {'loss': loss, 'std': std}
+        # aux_data = {'loss': loss, 'std': std}
         self.jobsDB.report_job_completion(job['_id'], loss, aux_data=aux_data)
